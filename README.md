@@ -4,19 +4,11 @@ Fetch SDET Coding Exercise
 --------------------------
 
 
-Steve Reiss - sreisscruz@gmail.com
+Author : Steve Reiss - sreisscruz@gmail.com
 
 
 
 
-Robot Framework Testing:
--------------------------
-
-	- Quantamatics Website
-		- General testing (Folders / Apps)
-		- Mobius
-
-	- POP View
  
 
 Python Packages Needed:
