@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Gold Coin Test" tests="1" errors="0" failures="0" skipped="0" time="50.386" timestamp="2024-07-10T13:06:09.050926">
+<testcase classname="Gold Coin Test" name="Coin Test" time="49.971">
+</testcase>
+<properties>
+<property name="Documentation" value="A Smoke test suite with tests for Gold Bar Testing Exercise.&#10;&#10;This test has a workflow that is created using keywords in&#10;the imported resource file (in ../Common/)."/>
+</properties>
+</testsuite>
