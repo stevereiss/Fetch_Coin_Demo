@@ -1,0 +1,490 @@
+Quantamatics Browser GUI Tests
+===================================
+
+Robot Framework Testing:
+-------------------------
+
+	- Quantamatics Website
+		- General testing (Folders / Apps)
+		- Mobius
+
+	- POP View
+ 
+
+Python Packages Needed:
+------------------------
+
+pip install faker
+pip install httpagentparser
+pip install bs4
+pip install keyboard
+pip install boto3
+
+pip install selenium
+pip install robotframework
+pip install robotframework-pythonlibcore
+pip install robotframework-selenium2library
+pip install robotframework-seleniumlibrary
+pip install robotframework-requests
+
+
+robotframework                      7.0
+robotframework-pythonlibcore        4.4.1
+robotframework-requests             0.9.7
+robotframework-selenium2library     3.0.0
+robotframework-seleniumlibrary      6.2.0
+
+
+
+Environment Configuration
+-------------------------
+
+On the computer node where the Robot Tests will be run:
+
+  1) Create a NEW User Environment Variable (NOT IN SYSTEM) in Control Panel
+    
+     Variable Name  : Auto_Download    
+     Variable Value : C:\Users\USERNAME\    (set to Your User Name + backslash)
+    
+
+
+Browser Installs and Support Drivers:
+---------------------------------------
+
+
+1) Chrome - Current version 124.x  ** Need to keep updated **
+
+	***  During frequent Automation runs on local machine - Seeing "zombie" Chrome processes using lots of CPU  ***
+
+
+      Chromedriver Download  ** Need to keep updated **
+
+        https://googlechromelabs.github.io/chrome-for-testing/
+
+      --------------------------
+
+		Look for Section : Stable
+
+	==>>	chromedriver	win64    https://url-to-file
+
+
+		- Open Zip file with File Manager
+		- copy chromedriver.exe to C:\Windows - Overwrite existing driver
+
+
+2) Firefox - Current version 125.x  ** Need to keep updated **
+
+	*** Current GeckoDriver & Firefox Browser will HANG when trying to Run the Robot Framework Suites (used to work)  ***
+  	***  Filed bug with Mozilla Org - Bug Below
+
+
+	Gecko Driver :
+	---------------
+	https://github.com/mozilla/geckodriver/releases
+
+	geckodriver-v0.32.0-win64.zip		10/13/2022
+
+		- copy geckodriver.exe to C:\Windows
+
+
+	Add Path to FireFox .EXE to Environment
+
+		C:\Program Files\Mozilla Firefox
+
+
+3) Edge -  Driver
+
+	***  Edge Browser appears to be the most stable and usable for Automation  ***
+
+
+	https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+
+
+	edgedriver_win64.zip
+
+	msedgedriver.exe  <<=== Driver
+
+
+		- Open Zip file with File Manager
+		- copy msedgedriver.exe to C:\Windows
+
+
+
+User Values
+===========
+QA.User@facteus.com 
+Admin.User@facteus.com / 11Paso62!
+
+
+server values
+=============
+
+dev.quantamatics.net
+stag.quantamatics.net
+uat.quantamatics.net
+beta.quantamatics.com  <--- Production
+
+
+Browser Values - on Command-line
+---------------
+
+  Chrome    - Careful - seeing "zombie" Chrom processes after many automation runs
+
+  Firefox   - Needs :  --variable USE_ALT_PROFILE:True
+
+  Edge	    - The most stable and usable browser & driver
+
+
+=============================================
+
+Command Line Examples
+---------------------
+
+
+Smoke Tests:
+--------------
+
+from location :  C:\GitLab-Repos\Quantamatics\quantamatics_test\Browser_Tests
+
+Chrome / Edge:
+--------------
+  
+  robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:dev.quantamatics.net  --test "Smoke Test Menus" --xunit C:\Temp\Output\robot_login_test.xml --log C:\Temp\Output\robot_login_test.html  --report None  Smoke_Tests\smoke_test_login.robot
+
+
+  robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Chrome --variable server:stag.quantamatics.net  --test "Smoke Test Menus" --xunit C:\Temp\Output\robot_login_test.xml --log C:\Temp\Output\robot_login_test.html  --report None  Smoke_Tests\smoke_test_login.robot
+
+
+  on Production:
+
+    robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Chrome --variable server:beta.quantamatics.com  --test "Smoke Test Menus" --xunit C:\Temp\Output\robot_login_test.xml --log C:\Temp\Output\robot_login_test.html  --report None  Smoke_Tests\smoke_test_login.robot
+
+
+Firefox:
+--------
+
+  robot --variable user:QA.User@facteus.com --variable password:"password" --variable browser:Firefox  --variable USE_ALT_PROFILE:True  --variable server:uat.quantamatics.net  --xunit C:\Temp\Output\robot_login_test.xml --log C:\Temp\Output\robot_login_test.html   Smoke_Tests\smoke_test_login.robot
+
+  robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Firefox  --variable USE_ALT_PROFILE:True  --variable server:uat.quantamatics.net  --xunit C:\Temp\Output\robot_login_test.xml --log C:\Temp\Output\robot_login_test.html  --report None Smoke_Tests\smoke_test_login.robot
+
+ Additional Info :
+
+  --variable browser:Firefox  --variable USE_ALT_PROFILE:True   ## Firefox needs a specific profile for test run
+
+
+
+Run Tests with only these conditions:
+-------------------------------------
+
+--test "Smoke Test Menus" 			<<====  Run ONLY this test
+
+--include "Folders" 				<<====  Run tests with this TAG
+
+--variable JS_CONSOLE:True    			<<==== Get the Chrome JS Console Logs
+
+
+--outputdir C:\Temp\Output_Folders\    		<<=== Send output files to this dir
+
+--report C:\Temp\Output_Folders\output.xml      <<=== Send XML output to this file (Standard (long) format)
+--junit C:\Temp\Output_Folders\output.xml       <<=== Send XML output to this file (JUnit format)
+
+--logtitle "Firefox Folder Test"
+
+
+
+Application Tests:
+------------------
+
+
+robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:dev.quantamatics.net  --test "Apps Test Menus" --xunit C:\Temp\Output\apps_test.xml --log C:\Temp\Output\apps_test.html  --report None  Smoke_Tests\Apps_Testing.robot
+
+
+Mobius Queries
+---------------
+
+ --variable GET_MEMORY_STATS:True
+
+
+robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:dev.quantamatics.net  --variable GET_MEMORY_STATS:False  --test "Test Multi Query Set 1" --xunit C:\Temp\Output_Mobius\mobius_test.xml --log C:\Temp\Output_Mobius\mobius_test.html  --report None  Smoke_Tests\Mobius_Testing_Queries.robot
+
+
+Suites:
+=======================================
+
+Smoke_Tests\Mobius_Testing_Basic.robot
+Smoke_Tests\Mobius_Testing_Queries.robot
+Smoke_Tests\Mobius_Stand_Alone_Testing.robot
+Smoke_Tests\Mobius_Testing_WTW_Queries.robot
+
+
+
+Mobius Stand Alone
+------------------
+
+
+Server : mobius.dev.quantamatics.net
+
+Prod : mobius-app.facteus.com
+
+
+--variable MOBIUS_STANDALONE:True  (default False)
+
+
+robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:mobius.dev.quantamatics.net   --variable MOBIUS_STANDALONE:True --xunit C:\Temp\Output_Mobius\mobius_test.xml --log C:\Temp\Output_Mobius\mobius_test.html  --report None  --test "Test Multi Query Set 1"  Smoke_Tests\Mobius_Stand_Alone_Testing.robot
+
+
+
+Mobius - Win The Week
+---------------------
+
+robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:dev.quantamatics.net  --test "Test Mobius App WTW Walmart CrossShopping Query" --xunit C:\Temp\Output_Mobius\mobius_test.xml --log C:\Temp\Output_Mobius\mobius_test.html  --report None  Smoke_Tests\Mobius_Testing_WTW_Queries.robot
+
+
+
+Folder Tests:
+------------------
+
+
+robot --variable user:QA.Admin@facteus.com --variable password:"password" --variable browser:Edge --variable server:dev.quantamatics.net  --test "Research Folder Walk Image" --xunit C:\Temp\Output\Folders_test.xml --log C:\Temp\Output\Folders_test.html  --report None  Smoke_Tests\Folder_Testing.robot
+
+
+
+POP View
+------------------
+
+Login is made via OKTA -
+------------------------
+
+Values are hard coded in test case file : POP_View_Testing.robot
+
+	${USER}                 QA.Admin@facteus.com                                   
+	${PASSWORD}             Ou812#ou812!BFD                                        
+
+*** This user must have special priveledges on OKTA (Geoff & Ryan fixed this).  ***
+
+
+
+
+DEV Server : pop-view.dev.facteus.cloud/arrival
+
+Devel : 
+
+
+robot  --variable browser:Edge  --variable server:pop-view.dev.facteus.cloud --xunit C:\Temp\Output\pop_view_test.xml --log C:\Temp\Output\pop_view_test.html  --report None  --test "Test POP View Menus"  Smoke_Tests\POP_View_Testing.robot
+
+
+robot  --variable browser:Edge  --variable server:pop-view.dev.facteus.cloud --xunit C:\Temp\Output\pop_view_test.xml --log C:\Temp\Output\pop_view_test.html  --report None  --test "Test In Progress Checkboxes"    Smoke_Tests\POP_View_Testing.robot
+
+
+
+======================
+
+On Jenkins:
+
+
+To make sure Robot Framework Reports can be viewed:
+
+    1) Dashboard | Manage Jenkins | Script Console
+
+	2) Run the below script on Jenkins Console
+
+		System.setProperty("hudson.model.DirectoryBrowserSupport.CSP","sandbox allow-scripts; default-src 'none'; img-src 'self' data: ; style-src 'self' 'unsafe-inline' data: ; script-src 'self' 'unsafe-inline' 'unsafe-eval' ;")
+
+
+
+
+=======================================================================================================
+
+Issue when using  --xunit  cmd-line (to generate a JUnit XML file - used to pass data to Zephyr)
+
+
+Original Test Case Failure : 
+
+
+<testcase classname="Apps Testing" name="Test Apps In New Tab" time="148.878">
+ <failure message="Incorrect NEW Browser TAB APP Title" type="AssertionError"/>
+</testcase>
+
+
+** ^^ Above ^^  - Does NOT show up as a Failure when imported into Zephyr **
+
+
+
+This patched XML will show the failure in Zephyr : 
+
+
+<testcase classname="Apps Testing" name="Test Apps In New Tab" time="148.878">
+ 
+ <failure message="Incorrect NEW Browser TAB Title" type="failure">
+  Incorrect NEW Browser TAB Title
+  </failure>
+
+</testcase>
+
+
+
+
+JUnit Format From : https://llg.cubic.org/docs/junit/
+
+
+ <failure message="" 		<!-- The message specified in the assert. -->
+	       type=""    		<!-- The type of the assert. -->
+	       >
+ failure description
+
+</failure>
+
+
+
+===============================
+
+Posted this message to the Robot Framework Development Forum
+Jan 27, 2023
+
+https://forum.robotframework.org/t/format-of-failure-node-in-xml-file-when-using-xunit/5215
+
+
+
+Hello All!
+
+I have been using Robot Framework for a number of years now... I recently changed my running CMD-Line params to use the --xunit so that the XML output would be in the correct format to exchange data with the Zephyr program from SmartBear Software.
+
+The Generated XML file has "a wrong format" for a Failure Node when it is imported into Zephyr.  The Failure Node is NOT seen as a Failure - proceeds to Success in Zephyr.
+
+See the code examples below : 
+
+
+Issue when using  --xunit  cmd-line (to generate a JUnit XML file - used to pass data to Zephyr - the Pass/Fail test results)
+
+
+Original Test Case Failure : 
+
+
+<testcase classname="Apps Testing" name="Test Apps In New Tab" time="148.878">
+ <failure message="Incorrect NEW Browser TAB APP Title" type="AssertionError"/>
+</testcase>
+
+
+** ^^ Above ^^  - Does NOT show up as a Failure when imported into Zephyr **
+
+
+
+This patched XML will show the failure correctly in Zephyr : 
+
+
+<testcase classname="Apps Testing" name="Test Apps In New Tab" time="148.878">
+ 
+ <failure message="Incorrect NEW Browser TAB Title" type="failure">
+  Incorrect NEW Browser TAB Title
+  </failure>
+
+</testcase>
+
+
+JUnit Format From : https://llg.cubic.org/docs/junit/
+
+ <failure message="" 		<!-- The message specified in the assert. -->
+	       type=""    		<!-- The type of the assert. -->
+	       >
+ failure description
+
+</failure>
+
+Version Info : 
+
+Python 3.9.10
+
+robotframework                      6.0.2
+robotframework-pythonlibcore        4.1.2
+robotframework-requests             0.9.4
+robotframework-selenium2library     3.0.0
+robotframework-seleniumlibrary      6.0.0
+
+
+
+--------------------
+June 8, 2023
+
+Filed Bug report with the above info.
+
+https://github.com/robotframework/robotframework/issues/4788
+
+
+
+Clipboard Info : 
+
+https://stackoverflow.com/questions/101128/how-do-i-read-text-from-the-windows-clipboard-in-python
+
+------------------------------------
+
+
+Bug Filed Against Geckodriver - 
+
+
+Robot Framework with Firefox hangs on browser startup with specified alternate profile path given. 
+
+https://github.com/mozilla/geckodriver/issues/2170
+
+
+Environment:
+------------ 
+
+Microsoft Windows [Version 10.0.22631.3374]
+
+Firefox v124.0.1 64-bit
+geckodriver 0.34.0 (c44f0d09630a 2024-01-02 15:36 +0000)                                
+            
+           
+Python Environment:
+----------------------                                                                 
+robotframework                      7.0
+robotframework-pythonlibcore        4.4.0
+robotframework-requests             0.9.6
+robotframework-selenium2library     3.0.0
+robotframework-seleniumlibrary      6.2.0
+
+selenium                            4.19.0
+
+
+
+Robot Code : 
+-------------
+
+  LOGIN_URL = local accessable address
+  profile_location = C:\GitLab-Repos\Quantamatics\quantamatics_test\Browser_Tests\Common\Profiles\FireFoxAutomationUserProfile
+
+  (profile has most all options turned off - all downloads no dialog, anonymous browser
+
+
+  SeleniumLibrary.Open Browser    ${LOGIN_URL}    browser=ff  ff_profile_dir=${profile_location}
+
+
+
+Error in Geckodriver Log : 
+---------------------------
+
+1711988209703	geckodriver	INFO	Listening on 127.0.0.1:51490
+1711988241896	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "51491" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\STEVEN~1\\AppData\\Local\\Temp\\rust_mozprofileMu5FIS"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1711988242981	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1711988243062	Marionette	INFO	Listening on port 51506
+WebDriver BiDi listening on ws://127.0.0.1:51491
+Read port: 51506
+1711988243314	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:51491/devtools/browser/bceca4fc-6ae9-4770-b4f2-94fc0838ed93
+JavaScript error: resource://gre/modules/PromiseWorker.sys.mjs, line 96: Error: Could not get children of file(C:\Users\STEVEN~1\AppData\Local\Temp\rust_mozprofileMu5FIS\thumbnails) because it does not exist
+1711988273882	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.error: services.settings: 
+  Message: StorageError: Storage error: UnknownError: IndexedDB: main/quicksuggest pruneAttachments() IndexedDB:  pruneAttachments() in main/quicksuggest The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+  Stack:
+    StorageError@resource://services-settings/RemoteSettingsClient.sys.mjs:153:5
+_adjustedError@resource://services-settings/RemoteSettingsClient.sys.mjs:928:14
+maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:816:38
+
+JavaScript error: , line 0: uncaught exception: Object
+console.error: (new StorageError("Storage error: UnknownError: IndexedDB: main/quicksuggest pruneAttachments() IndexedDB:  pruneAttachments() in main/quicksuggest The operation failed for reasons unrelated to the database itself and not covered by any other error code.", "resource://services-settings/RemoteSettingsClient.sys.mjs", 153))
+Exiting due to channel error.
+Exiting due to channel error.
+

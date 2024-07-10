@@ -1,0 +1,81 @@
+Test Site :  http://sdetchallenge.fetch.com/
+
+
+
+
+Weighings
+[0] > [1]   1 is less
+[0] = [2]
+[1] < [2]  1 is less  ** 1 is the fake
+[3] = [2]
+
+
+
+Weighings
+[0] = [1]  0 & 1 are equal - skip both, move on to 2 new numbers
+[2] < [3]  2 is less than 3 - 2 is the fake
+
+
+
+Results:
+--------
+
+  =  skip both, move on to 2 new numbers - POP values, move indexes
+  <   value on left
+  >   value on right
+
+
+
+
+N = # Bars
+
+Left_List = 0 thru N       0|1|2|3|4|5|6|7
+Right_list = 1 thru N       |1|2|3|4|5|6|7
+
+
+Get Pairs of values from list
+
+0, 1
+
+
+
+
+
+Hints:
+
+
+Google Query : coding problem weighing gold bars find fake
+
+
+1) 	https://www.geeksforgeeks.org/decision-trees-fake-coin-puzzle/
+
+
+2)   https://web2.0calc.com/questions/i-bet-you-won-t-read-this
+
+Your question states the counterfit one weighs 'different'  .....if you do not know in what manner the counterfit one weighs 'different'  (i.e. it could weigh MORE than gold ....maybe depleted uranium or something) , then the minummwould be as follows:
+
+  .
+
+      split the bars up two per side.......One side will be DIFFERENT......
+
+       One side split up will be either:      =.......we know those are both genuine     (second weighing)
+
+                                                             0r not =   (means the other two were genuine)
+
+      third weighing with a genuine one and one from the second pair   if =   both genuine and the other from the second pair is counterfit
+
+                                                                                                                       if not = then this one is cfit
+
+ 
+
+Sooooo.... it will take THREE weighings if you do not know how the counterfit bar differs from the others (heavier or lighter)
+
+
+
+
+3) https://www.coursehero.com/file/18787674/hw7solns/
+
+4) https://codegolf.stackexchange.com/questions/93386/counterfeit-coins-on-a-pointer-scale
+
+
+
