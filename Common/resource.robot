@@ -767,11 +767,6 @@ Get JSON Request
 
     Log                 Fetching URL : ${get_url}
     Log Dictionary      ${cookie_info_dict}
-#    ${bearer_auth}      Set Variable   Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1NjEiLCJ1bmlxdWVfbmFtZSI6IlFBLkFkbWluQGZhY3RldXMuY29tIiwicm9sZSI6WyJBZG1pbiIsIk9yZ0Fkb
-#WluIiwiT3JnT3duZXIiXSwicmVmIjoiMTY5MTEwMzM1NSIsIm5iZiI6MTY5MTA5OTc1NSwiZXhwIjoxNjkzNjkxNzU1LCJpYXQiOjE2OTEwOTk3NTV9.AiG7uVVzGtzGOXmkcFxBPTrb-29xFcRbf_eyqe0Yhh6MrIroRJEO_1qXHTk1GWcuiuCksv8TXi2kigPX69AVvw'
-
-#'Authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1NjEiLCJ1bmlxdWVfbmFtZSI6IlFBLkFkbWluQGZhY3RldXMuY29tIiwicm9sZSI6WyJBZG1pbiIsIk9yZ0Fkb
-#WluIiwiT3JnT3duZXIiXSwicmVmIjoiMTY5MTEwMzM1NSIsIm5iZiI6MTY5MTA5OTc1NSwiZXhwIjoxNjkzNjkxNzU1LCJpYXQiOjE2OTEwOTk3NTV9.AiG7uVVzGtzGOXmkcFxBPTrb-29xFcRbf_eyqe0Yhh6MrIroRJEO_1qXHTk1GWcuiuCksv8TXi2kigPX69AVvw'
 
 #    ${headers}              Create Dictionary   Accept=*/*    Content-Type=application/json-patch+json    Authorization=${bearer_auth}
 
