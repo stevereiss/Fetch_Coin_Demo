@@ -138,17 +138,18 @@ from location :  Fetch_Coin_Demo >
 For Browsers : Chrome / Edge:
 -----------------------------
 
+ --variable NUM_COINS:20  ## Default is 8
+
 Edge
 ------
 
-  \Fetch_Gold_Coin_Test > robot --variable browser:Edge --test "Coin Test" --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output      
-  \robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot                                                                  
+  \Fetch_Gold_Coin_Test > robot --variable browser:Edge --test "Coin Test"  --variable NUM_COINS:20 --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output\robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot    Smoke_Tests\Gold_Coin_Test.robot                                                             
 
 
 Chrome
 ------
 
-\Fetch_Gold_Coin_Test > robot --variable browser:Chrome --test "Coin Test" --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output\robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot                                                                  
+\Fetch_Gold_Coin_Test > robot --variable browser:Chrome --test "Coin Test" --variable NUM_COINS:20 --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output\robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot                                                                  
   
 
 

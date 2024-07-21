@@ -11,11 +11,6 @@ Library           String
 Library           DateTime
 Library           OperatingSystem
 Library           SeleniumLibrary
-#Library           RequestsLibrary
-#Library	          Screenshot
-#Library           Process
-
-
 
 Library           Faker_Data_Generator.py                                    # custom python library
 
@@ -26,11 +21,12 @@ Variables         locators.py                                                # G
 
 
 # URL info
-
+${NUM_COINS}        8                                                          # set default num of coins - use CMD-LINE to change
 ${SERVER}           sdetchallenge.fetch.com                                    # Testing URL
+${URL_PARAM}        ?coins=${NUM_COINS}                                        # added param - sets number of coins
 
 ${PROTOCOL}         http                                                       # default protocol is non-secure
-${BASE_URL}         ${PROTOCOL}://${SERVER}/
+${BASE_URL}         ${PROTOCOL}://${SERVER}/${URL_PARAM}
 ${DEFAULT_TITLE}    React App                                                  # partial match on page title version
 
 ${EQUAL_VALUE}      =                                                          # Comparison Operators

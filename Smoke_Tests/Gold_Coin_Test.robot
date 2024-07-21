@@ -6,7 +6,8 @@ Documentation     A Smoke test suite with tests for Gold Bar Testing Exercise.
 
 Resource          ../Common/resource.robot                                      # use basic resource file
 Resource          ../Common/resource_Gold_Coin.robot                            # use Gold Coin resource file
-#Resource          ../Common/resource_SmokeTest.robot                            # use Smoke Test resource file
+Library           SeleniumLibrary
+
 
 Test Setup        Suite Setup                                                   # run at Beginning of EACH TEST
 Test Teardown     Suite Cleanup                                                 # run at end EACH TEST
@@ -25,8 +26,9 @@ Coin Test
     [Documentation]     Gold Coin Test
     [tags]              Smoke    Test
 
-    ${Num_Bars}         Set Variable    ${9}
+    ${coin_locator}     Set Variable   xpath=//button[starts-with(@id, 'coin_')]
+    ${Num_Bars}         Run Keyword    SeleniumLibrary.Get Element Count    ${coin_locator}
+
+    log to console     Num Bars = ${Num_Bars}
 
     Run Keyword And Continue on Failure      Gold Coin Test   ${Num_Bars}       # Run Gold Coing Test
-
-
