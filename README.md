@@ -60,7 +60,7 @@ Testing Environment
 		
 		robot_Gold_Coin_test.html 		- Run output Report 
 		robot_Gold_Coin_test.xml		- Results file in XML format
-		17,181 selenium-screenshot-1.png	- screen shot for Report (above)
+		selenium-screenshot-1.png	        - screen shot for Report (above)
 
 <DIR>          Smoke_Tests
 
@@ -149,8 +149,4 @@ Edge
 Chrome
 ------
 
-\Fetch_Gold_Coin_Test > robot --variable browser:Chrome --test "Coin Test" --variable NUM_COINS:20 --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output\robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot                                                                  
-  
-
-
-
+\Fetch_Gold_Coin_Test > robot --variable browser:Chrome --test "Coin Test" --variable NUM_COINS:20 --xunit C:\Temp\Output\robot_Gold_Coin_test.xml --log C:\Temp\Output\robot_Gold_Coin_test.html  --report None Smoke_Tests\Gold_Coin_Test.robot 
