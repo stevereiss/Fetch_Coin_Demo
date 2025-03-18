@@ -57,13 +57,8 @@ ${SQL_FAILURE}          ${0}
 
 Open Browser To Base Page
     [Documentation]     Get the proper browser from variable BROWSER and set the correct options
-#    [arguments]         ${Use_Alt_Profile}
 
     Sleep           1s
-
-#    ${profile_location}     Set Variable   ${CURDIR}${PATH_SEPERATOR}${ALT_FIREFOX_PROFILE}
-#    Log                     Profile Location = ${profile_location}
-
 
     IF  '${BROWSER}' == "Chrome"
         Log To Console                          ${\n}Running Chrome with Browser Options

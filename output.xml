@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-08-14T12:54:58.473171" rpa="false" schemaversion="5">
+<suite id="s1" name="Gold Coin Test" source="C:\Data\Steve\Job_Search\Coding_Examples\Fetch_Gold_Coin_Test\Fetch_Coin_Demo\Smoke_Tests\Gold_Coin_Test.robot">
+<test id="s1-t1" name="Coin Test" line="25">
+<kw name="Suite Setup" owner="resource_Gold_Coin" type="SETUP">
+<kw name="Test Initialization" owner="resource_Gold_Coin">
+<kw name="Open Browser To Base Page" owner="resource">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-08-14T12:55:00.606015" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-08-14T12:54:59.605896" elapsed="1.000119"/>
+</kw>
+<if>
+<branch type="IF" condition="'${BROWSER}' == &quot;Chrome&quot;">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${\n}Running Chrome with Browser Options</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:00.607033" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
+<arg>Chrome Browser Options</arg>
+<arg>${BASE_URL}</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:00.607033" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:00.606015" elapsed="0.001018"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER}' == &quot;Edge&quot;">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${\n}Running Edge with Options</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:00.607033" elapsed="0.001991"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-08-14T12:55:00.610026" level="INFO">${edge_arguments} = add_argument("--inprivate");add_argument("--enable-chrome-browser-cloud-management");add_argument("--log-level=3")</msg>
+<var>${edge_arguments}</var>
+<arg>add_argument("--inprivate");add_argument("--enable-chrome-browser-cloud-management");add_argument("--log-level=${DRIVER_LOG_LEVEL}")</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-08-14T12:55:00.609024" elapsed="0.001002"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-08-14T12:55:00.610026" level="INFO">Opening browser 'Edge' to base url 'http://sdetchallenge.fetch.com/?coins=10'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${edge_arguments}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-08-14T12:55:00.610026" elapsed="5.393043"/>
+</kw>
+<status status="PASS" start="2024-08-14T12:55:00.607033" elapsed="5.396036"/>
+</branch>
+<branch type="ELSE">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:06.003069" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:06.003069" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-08-14T12:55:00.606015" elapsed="5.397054"/>
+</if>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.004981" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-08-14T12:55:06.003069" elapsed="5.001912"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Get Browser Version" owner="resource">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-08-14T12:55:11.005981" level="INFO">Executing JavaScript:
+return navigator.userAgent;
+Without any arguments.</msg>
+<msg time="2024-08-14T12:55:11.012981" level="INFO">${agentHeader} = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0</msg>
+<var>${agentHeader}</var>
+<arg>return navigator.userAgent;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.005981" elapsed="0.007000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.013978" level="INFO">USER AGENT HEADER=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0</msg>
+<arg>USER AGENT HEADER=${agentHeader}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.012981" elapsed="0.000997"/>
+</kw>
+<kw name="Get Browser Agent" owner="Faker_Data_Generator">
+<msg time="2024-08-14T12:55:11.013978" level="INFO">${browser_info} = ChromiumEdge 127.0.0.0 on Windows 10</msg>
+<var>${browser_info}</var>
+<arg>${agentHeader}</arg>
+<doc> Get the browser agent (browser ver &amp; platform) from an agent_string</doc>
+<status status="PASS" start="2024-08-14T12:55:11.013978" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.014978" level="INFO">Browser Version=ChromiumEdge 127.0.0.0 on Windows 10</msg>
+<arg>Browser Version=${browser_info}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.014978" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${browser_info}</value>
+<status status="PASS" start="2024-08-14T12:55:11.014978" elapsed="0.000000"/>
+</return>
+<arg>${BROWSER}</arg>
+<doc>Log the name + version and platform of the browser under test</doc>
+<status status="PASS" start="2024-08-14T12:55:11.004981" elapsed="0.009997"/>
+</kw>
+<msg time="2024-08-14T12:55:11.014978" level="INFO">${version} = ('PASS', 'ChromiumEdge 127.0.0.0 on Windows 10')</msg>
+<var>${version}</var>
+<arg>Get Browser Version</arg>
+<arg>${BROWSER}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.004981" elapsed="0.009997"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2024-08-14T12:55:11.015978" level="INFO">${version} = ChromiumEdge 127.0.0.0 on Windows 10</msg>
+<var>${version}</var>
+<arg>${version}</arg>
+<arg>-1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.014978" elapsed="0.001000"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.015978" level="INFO">${BROWSER_VERSION} = ChromiumEdge 127.0.0.0 on Windows 10</msg>
+<arg>${BROWSER_VERSION}</arg>
+<arg>${version}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.015978" elapsed="0.000000"/>
+</kw>
+<kw name="Set Tags" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.015978" level="INFO">Set tag 'ChromiumEdge 127.0.0.0 on Windows 10'.</msg>
+<arg>${BROWSER_VERSION}</arg>
+<doc>Adds given ``tags`` for the current test or all tests in a suite.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.015978" elapsed="0.001000"/>
+</kw>
+<kw name="Set Tags" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.016978" level="INFO">Set tag 'Server = sdetchallenge.fetch.com'.</msg>
+<arg>Server = ${SERVER}</arg>
+<doc>Adds given ``tags`` for the current test or all tests in a suite.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.016978" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword" owner="BuiltIn">
+<kw name="Get Selenium Driver Info" owner="resource">
+<if>
+<branch type="IF" condition="'${BROWSER}' == &quot;Edge&quot;">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.018977" level="INFO">${name_index} = 39</msg>
+<var>${name_index}</var>
+<arg>${39}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.017978" elapsed="0.000999"/>
+</kw>
+<kw name="Run OS Command" owner="resource">
+<kw name="Run And Return Rc And Output" owner="OperatingSystem">
+<msg time="2024-08-14T12:55:11.026977" level="INFO">Running command 'msedgedriver -v 2&gt;&amp;1'.</msg>
+<msg time="2024-08-14T12:55:11.077137" level="INFO">${rc} = 0</msg>
+<msg time="2024-08-14T12:55:11.077137" level="INFO">${output} = Microsoft Edge WebDriver 127.0.2651.74 (dbf5b0aa014c4e70e3d5e2d73248e21264f82957)</msg>
+<var>${rc}</var>
+<var>${output}</var>
+<arg>${command_to_run}</arg>
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.018977" elapsed="0.058160"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.078132" level="INFO">0</msg>
+<arg>${rc}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.078132" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.078132" level="INFO">Microsoft Edge WebDriver 127.0.2651.74 (dbf5b0aa014c4e70e3d5e2d73248e21264f82957)</msg>
+<arg>${output}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.078132" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${output}</value>
+<status status="PASS" start="2024-08-14T12:55:11.078132" elapsed="0.001000"/>
+</return>
+<msg time="2024-08-14T12:55:11.079132" level="INFO">${driver_temp} = Microsoft Edge WebDriver 127.0.2651.74 (dbf5b0aa014c4e70e3d5e2d73248e21264f82957)</msg>
+<var>${driver_temp}</var>
+<arg>msedgedriver -v</arg>
+<doc>Pass in a system command - send command and args</doc>
+<status status="PASS" start="2024-08-14T12:55:11.018977" elapsed="0.060155"/>
+</kw>
+<status status="PASS" start="2024-08-14T12:55:11.017978" elapsed="0.061154"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER}' == &quot;Chrome&quot;">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${name_index}</var>
+<arg>${27}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.079132" elapsed="0.001001"/>
+</kw>
+<kw name="Run OS Command" owner="resource">
+<var>${driver_temp}</var>
+<arg>chromedriver -v</arg>
+<doc>Pass in a system command - send command and args</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.080133" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:11.079132" elapsed="0.001001"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER}' == &quot;Firefox&quot;">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${name_index}</var>
+<arg>${27}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.080133" elapsed="0.000000"/>
+</kw>
+<kw name="Run OS Command" owner="resource">
+<var>${driver_temp}</var>
+<arg>geckodriver -v</arg>
+<doc>Pass in a system command - send command and args</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.081132" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:11.080133" elapsed="0.000999"/>
+</branch>
+<branch type="ELSE">
+<kw name="Return From Keyword" owner="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.081132" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:11.081132" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-08-14T12:55:11.017978" elapsed="0.063154"/>
+</if>
+<kw name="Get Substring" owner="String">
+<msg time="2024-08-14T12:55:11.082132" level="INFO">${driver_name} = Microsoft Edge WebDriver 127.0.2651.74 </msg>
+<var>${driver_name}</var>
+<arg>${driver_temp}</arg>
+<arg>0</arg>
+<arg>${name_index}</arg>
+<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.081132" elapsed="0.001000"/>
+</kw>
+<kw name="Set Tags" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.082132" level="INFO">Set tag 'Microsoft Edge WebDriver 127.0.2651.74 '.</msg>
+<arg>${driver_name}</arg>
+<doc>Adds given ``tags`` for the current test or all tests in a suite.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.082132" elapsed="0.000000"/>
+</kw>
+<doc>Get the currently active Selenium Driver information - use system call to get version info</doc>
+<status status="PASS" start="2024-08-14T12:55:11.017978" elapsed="0.065153"/>
+</kw>
+<arg>Get Selenium Driver Info</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.016978" elapsed="0.066153"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.083131" elapsed="0.035115"/>
+</kw>
+<arg>${HEADLESS_BROWSER} == ${False}</arg>
+<arg>SeleniumLibrary.Maximize Browser Window</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.083131" elapsed="0.035115"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.119249" elapsed="0.000000"/>
+</kw>
+<kw name="Base Page Should Be Open" owner="resource_Gold_Coin">
+<kw name="Get Title" owner="SeleniumLibrary">
+<msg time="2024-08-14T12:55:11.380418" level="INFO">${page_title} = sdetchallenge.fetch.com</msg>
+<var>${page_title}</var>
+<doc>Returns the title of the current page.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.120245" elapsed="0.260173"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2024-08-14T12:55:11.380418" level="FAIL">'sdetchallenge.fetch.com' does not contain 'React App'</msg>
+<arg>${page_title}</arg>
+<arg>${DEFAULT_TITLE}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="FAIL" start="2024-08-14T12:55:11.380418" elapsed="0.001000">'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</kw>
+<doc>Validate the page of the login screen</doc>
+<status status="FAIL" start="2024-08-14T12:55:11.119249" elapsed="0.262169">'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</kw>
+<doc>Get the proper browser from variable BROWSER and set the correct options</doc>
+<status status="FAIL" start="2024-08-14T12:54:59.604896" elapsed="11.776522">'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
+<arg>Check Base URL</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:11.381418" elapsed="0.000000"/>
+</kw>
+<doc>Perform User Login - present UserName/Password on login screen</doc>
+<status status="FAIL" start="2024-08-14T12:54:59.603896" elapsed="11.777522">'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</kw>
+<doc>Initialize the environment for Suite - run at beginning of test</doc>
+<status status="FAIL" start="2024-08-14T12:54:59.603896" elapsed="11.777522">'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</kw>
+<kw name="Suite Cleanup" owner="resource_Gold_Coin" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2024-08-14T12:55:11.383418" elapsed="2.444350"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.828765" level="INFO">Length is 68.</msg>
+<msg time="2024-08-14T12:55:13.828765" level="INFO">${msg_length} = 68</msg>
+<var>${msg_length}</var>
+<arg>${TEST MESSAGE}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.828765" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.829766" level="INFO">Setup failed:
+'sdetchallenge.fetch.com' does not contain 'React App'</msg>
+<arg>${TEST MESSAGE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.829766" elapsed="0.001000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.830766" level="INFO">68</msg>
+<arg>${msg_length}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.830766" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Append To List" owner="Collections">
+<arg>${MESSAGE_LIST}</arg>
+<arg>${TEST MESSAGE}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.831766" elapsed="0.001000"/>
+</kw>
+<arg>${msg_length} &gt; 0</arg>
+<arg>Append To List</arg>
+<arg>${MESSAGE_LIST}</arg>
+<arg>${TEST MESSAGE}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.831766" elapsed="0.001000"/>
+</kw>
+<doc>Cleanup for Test - run at end of Each Test</doc>
+<status status="PASS" start="2024-08-14T12:55:11.382417" elapsed="2.450349"/>
+</kw>
+<doc>Gold Coin Test</doc>
+<tag>ChromiumEdge 127.0.0.0 on Windows 10</tag>
+<tag>Microsoft Edge WebDriver 127.0.2651.74 </tag>
+<tag>Server = sdetchallenge.fetch.com</tag>
+<tag>Smoke</tag>
+<tag>Test</tag>
+<status status="FAIL" start="2024-08-14T12:54:59.602896" elapsed="14.230858">Setup failed:
+'sdetchallenge.fetch.com' does not contain 'React App'</status>
+</test>
+<kw name="Final Cleanup" owner="resource_Gold_Coin" type="TEARDOWN">
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.839758" level="INFO">${output_message} = Setup failed:
+'sdetchallenge.fetch.com' does not contain 'React App'</msg>
+<var>${output_message}</var>
+<arg>SEPARATOR=${\n}</arg>
+<arg>@{MESSAGE_LIST}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.838758" elapsed="0.001000"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.840758" level="INFO">Length is 68.</msg>
+<msg time="2024-08-14T12:55:13.840758" level="INFO">${message_length} = 68</msg>
+<var>${message_length}</var>
+<arg>${output_message}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.840758" elapsed="0.000000"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-08-14T12:55:13.841758" level="INFO">Length is 0.</msg>
+<msg time="2024-08-14T12:55:13.841758" level="INFO">${data_length} = 0</msg>
+<var>${data_length}</var>
+<arg>${DATA_LIST}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.841758" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${data_length} &gt; 0">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>DATA_BEGIN</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.842758" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${TWO_SPACES}${curr_row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.843758" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${EMPTY}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.843758" elapsed="0.000000"/>
+</kw>
+<var name="${curr_row}"/>
+<status status="NOT RUN" start="2024-08-14T12:55:13.842758" elapsed="0.001000"/>
+</iter>
+<var>${curr_row}</var>
+<value>@{DATA_LIST}</value>
+<status status="NOT RUN" start="2024-08-14T12:55:13.842758" elapsed="0.002000"/>
+</for>
+<kw name="Log List" owner="Collections">
+<arg>${DATA_LIST}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.844758" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>DATA_END</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.844758" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${EMPTY}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2024-08-14T12:55:13.845760" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-08-14T12:55:13.841758" elapsed="0.004002"/>
+</branch>
+<status status="PASS" start="2024-08-14T12:55:13.841758" elapsed="0.004002"/>
+</if>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>INFO_BEGIN</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.845760" elapsed="0.000997"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Tested Server : ${SERVER}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.846757" elapsed="0.001006"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${SPACE*7} Suite : ${SUITE_NAME}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.848762" elapsed="0.002642"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${SPACE*5} Browser : ${BROWSER}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.851404" elapsed="0.003021"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${EMPTY}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.854425" elapsed="0.002005"/>
+</kw>
+<if>
+<branch type="IF" condition="${message_length} &gt; 1">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${output_message}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.857430" elapsed="0.000996"/>
+</kw>
+<status status="PASS" start="2024-08-14T12:55:13.856430" elapsed="0.001996"/>
+</branch>
+<status status="PASS" start="2024-08-14T12:55:13.856430" elapsed="0.001996"/>
+</if>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>INFO_END</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-08-14T12:55:13.858426" elapsed="0.001004"/>
+</kw>
+<doc>Cleanup for Suite - run at end of Suite</doc>
+<status status="PASS" start="2024-08-14T12:55:13.838758" elapsed="0.021672"/>
+</kw>
+<doc>A Smoke test suite with tests for Gold Bar Testing Exercise.
+
+This test has a workflow that is created using keywords in
+the imported resource file (in ../Common/).</doc>
+<status status="FAIL" start="2024-08-14T12:54:58.475171" elapsed="15.385259"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">ChromiumEdge 127.0.0.0 on Windows 10</stat>
+<stat pass="0" fail="1" skip="0">Microsoft Edge WebDriver 127.0.2651.74 </stat>
+<stat pass="0" fail="1" skip="0">Server = sdetchallenge.fetch.com</stat>
+<stat pass="0" fail="1" skip="0">Smoke</stat>
+<stat pass="0" fail="1" skip="0">Test</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Gold Coin Test">Gold Coin Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

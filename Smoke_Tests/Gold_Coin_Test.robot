@@ -26,9 +26,9 @@ Coin Test
     [Documentation]     Gold Coin Test
     [tags]              Smoke    Test
 
-    ${coin_locator}     Set Variable   xpath=//button[starts-with(@id, 'coin_')]
-    ${Num_Bars}         Run Keyword    SeleniumLibrary.Get Element Count    ${coin_locator}
+    ${coin_locator}     Set Variable   xpath=//button[starts-with(@id, 'coin_')]                # locator for num coins on page
+    ${Num_Bars}         Run Keyword    SeleniumLibrary.Get Element Count    ${coin_locator}     # get the count of coins
 
     log to console     Num Bars = ${Num_Bars}
 
-    Run Keyword And Continue on Failure      Gold Coin Test   ${Num_Bars}       # Run Gold Coing Test
+    Run Keyword And Continue on Failure      Gold Coin Test   ${Num_Bars}                       # Run Gold Coing Test
